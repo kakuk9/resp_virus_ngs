@@ -1,1 +1,1 @@
-# viral_mMGS_respiratory
+# resp_virus_ngs
