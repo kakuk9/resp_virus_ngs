@@ -1,0 +1,37 @@
+### Pre-Diamond Configuration File for Respiratory mNGS Pipeline ###
+rawFastqDir: /Illumina/RunFolderWithDemultiplexFastqs
+run_directory: /RunDirectory
+scripts_dir: /Path/scripts/
+IlluminaSequencer: NextSeq
+hostRef: /db/wgs/Human/hg38/bowtie2/hg38.fa
+DiamondDB: /db/diamond/nr.dmnd
+samtools: /software/samtools-v1.16.1/bin/samtools #optional
+numUnderscore: 3 # e.g. ABC_RZ_S1 -> 3 underscore
+
+### Post-Diamond Configuration File for Respiratory mNGS Pipeline ###
+###File directory###
+m8_dir: /RunDirectory/diamond
+contigs_directory: /RunDirectory/filteredContigs
+exclude_txt: /Path/smk/respiratory_mNGS/exclude.txt
+indepth_list: /Path/smk/respiratory_mNGS/indepth.txt
+
+###Script location###
+m8_keepTop_script: /Path/python/diamond_m8_filter.py
+blastn_filter_script: /Path/python/blastn_filter.py
+add_taxon_script: /Path/bash/add_taxon.sh
+trim_viral_contig: /Path/python/trim_viral_contigs.py
+viral_read_statistics: /Path/python/summarise_contigs_per_taxon.py
+find_best_ref: /Path/python/best_ref_mergedblastn.py
+trim_contig_depth: /Path/python/trim_contig.py
+scaffold_nucmer: /Path/python/scaffold_nucmer_coords.py
+
+###Database###
+virus_segment_info: /Resource/taxon_segmented_orNot.tsv
+refseq_db: /Resource/viral.1.1.genomic.fna
+refseq_segment_info: /Resource/viral_1_1_genomic_withSegmentInfo.clean
+genus_max_segments: /Resource/genus_max_segments.tsv
+
+###Threshold###
+batch: Run_Name
+coverage_threshold: 70
+min_depth: 10
